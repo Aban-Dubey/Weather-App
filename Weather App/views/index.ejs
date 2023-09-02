@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Weather App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/abt">About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Common Cities
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" value="Lucknow" href="/luc">Lucknow</a></li>
+                <li><a class="dropdown-item" value="Jaipur" href="/jpr">Jaipur</a></li>
+                <li><a class="dropdown-item" value="Patna" href="/pat">Patna</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input id="city1" name="city_name" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+            <button id="searchButton" value="submit" class="btn btn-outline-success" type="submit" formaction="/search">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+      <h1 class="my-4 text-center">Weather for <%= city2 %></h1>
+
+      <main>
+        <div id="all_cards" class="row row-cols-1 row-cols-md-3 mb-3 text-center" style=
+        "margin-left: 12px;
+        margin-right: 12px;
+        margin-top: 50px;">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Cloud and Humidity Info</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title"><%= humidity %> %</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Cloud PCT: <%= cloud_pct %> </li>
+                  <li>Humidity: <%= humidity %></li>
+                  <li>Feels Like: <%= feels_like %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Temperatures</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title"><%= temp %><small class="text-body-secondary fw-light"><small class="text-body-secondary fw-light"><span>&#8451;</span></small></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Temperature: <%= temp %></li>
+                  <li>Min Temperature: <%= min_temp %></li>
+                  <li>Max Temperature: <%= max_temp %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Sun and Wind Info</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title"><%= wind_speed %><small class="text-body-secondary fw-light"> m/s</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Sunrise: <%= sunrise %></li>
+                  <li>Sunset: <%= sunset %></li>
+                  <li>Wind Speed: <%= wind_speed %> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <hr>
+      <% if (locals.content) { %>
+        <h2 class="text-center" style="margin-top: 34px;">About</h2>
+        <p class="text-center" style="margin-top: 30px;"><%= content %></p>
+      <% } %>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+  <script src="index.js"></script>
+</html>
