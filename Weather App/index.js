@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import bodyParser from 'body-parser';
 import axios from 'axios';
 import express from 'express'
@@ -5,7 +6,7 @@ import express from 'express'
 const app = express();
 const port = 3000;
 let options;
-const apiKey = "Your api key here!"; //Don't forget to add API Key here!
+const apiKey = process.env.APIKEY;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,7 +23,6 @@ app.get("/", async (req, res) => {
       };
     try {
         const response = await axios.request(options);
-        console.log(response.data);
         res.render("index.ejs",{
             city2: "Delhi",
             temp: response.data.temp,
@@ -52,7 +52,6 @@ app.get("/", async (req, res) => {
           };
           try {
             const response = await axios.request(options);
-            console.log(response.data);
             res.render("index.ejs",{
                 city2: req.query.city_name,
                 temp: response.data.temp,
@@ -82,7 +81,6 @@ app.get("/", async (req, res) => {
           };
           try {
             const response = await axios.request(options);
-            console.log(response.data);
             res.render("index.ejs",{
                 city2: 'Lucknow',
                 temp: response.data.temp,
@@ -112,7 +110,6 @@ app.get("/", async (req, res) => {
           };
           try {
             const response = await axios.request(options);
-            console.log(response.data);
             res.render("index.ejs",{
                 city2: 'Jaipur',
                 temp: response.data.temp,
@@ -142,7 +139,6 @@ app.get("/", async (req, res) => {
           };
           try {
             const response = await axios.request(options);
-            console.log(response.data);
             res.render("index.ejs",{
                 city2: 'Patna',
                 temp: response.data.temp,
@@ -192,4 +188,4 @@ app.get("/", async (req, res) => {
 
 app.listen(port,()=> {
     console.log("Server is running on port: "+port);
-})
+});
